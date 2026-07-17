@@ -1,0 +1,56 @@
+---
+import type { ProjectMeta } from "../content/projects";
+
+interface Props {
+  meta: ProjectMeta;
+  labels: { area: string; client: string; role: string; date: string };
+}
+
+const { meta, labels } = Astro.props;
+
+const rows = [
+  { label: labels.area, value: meta.area },
+  { label: labels.client, value: meta.client },
+  { label: labels.role, value: meta.role },
+  { label: labels.date, value: meta.date },
+];
+---
+
+<dl class="project-meta" data-reveal>
+  {
+    rows.map((row) => (
+      <div class="project-meta__row">
+        <dt>{row.label}</dt>
+        <dd>{row.value}</dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .project-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .project-meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .project-meta__row dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--color-orange);
+  }
+
+  .project-meta__row dd {
+    margin: 8px 0 0;
+    font-size: 1.1rem;
+  }
+</style>

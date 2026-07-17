@@ -1,0 +1,85 @@
+---
+import { site, type Lang } from "../content/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = site[lang];
+
+const socialLinks = [
+  { label: "Linkedin", href: t.social.linkedin },
+  { label: "Instagram", href: t.social.instagram },
+  { label: "UFRJ", href: t.social.ufrj },
+];
+---
+
+<footer class="site-footer" data-reveal>
+  <div class="container">
+    <p class="eyebrow">{t.contact.eyebrow}</p>
+    <p class="site-footer__blurb">{t.contact.blurb}</p>
+
+    <div class="site-footer__details">
+      <a href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+      <a href={`https://${t.contact.website}`}>{t.contact.website}</a>
+      <span>{t.contact.location}</span>
+    </div>
+
+    <ul class="site-footer__social">
+      {
+        socialLinks.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noreferrer">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 96px 0 48px;
+    border-top: 1px solid rgba(18, 18, 18, 0.1);
+    margin-top: 96px;
+  }
+
+  .site-footer__blurb {
+    max-width: 32ch;
+    margin-top: 16px;
+    font-size: 1.25rem;
+  }
+
+  .site-footer__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 40px;
+    font-size: 1rem;
+  }
+
+  .site-footer__details a {
+    width: fit-content;
+  }
+
+  .site-footer__details a:hover {
+    color: var(--color-orange);
+  }
+
+  .site-footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 40px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .site-footer__social a:hover {
+    color: var(--color-orange);
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  heading: string;
+  period: string;
+  subtitle: string;
+}
+
+const { heading, period, subtitle } = Astro.props;
+---
+
+<div class="timeline-item" data-reveal>
+  <h3>{heading}</h3>
+  <p class="timeline-item__period">{period}</p>
+  <p class="timeline-item__subtitle">{subtitle}</p>
+</div>
+
+<style>
+  .timeline-item {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(18, 18, 18, 0.1);
+  }
+
+  .timeline-item h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .timeline-item__period {
+    margin-top: 4px;
+    color: var(--color-orange);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .timeline-item__subtitle {
+    margin-top: 8px;
+    color: var(--color-ink-50);
+  }
+</style>

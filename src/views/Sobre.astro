@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, type Lang } from "../content/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = site[lang];
+---
+
+<BaseLayout lang={lang} path="/sobre" title={t.nav.about}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{t.sobrePage.eyebrow}</p>
+      <h1 class="sobre__title" data-reveal>{t.sobrePage.title}</h1>
+
+      <div class="sobre__paragraphs">
+        {t.about.paragraphs.map((p) => <p data-reveal>{p}</p>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding: 64px 0 96px;
+  }
+
+  .sobre__title {
+    margin-top: 12px;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    color: var(--color-orange);
+  }
+
+  .sobre__paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 68ch;
+    margin-top: 40px;
+    font-size: 1.2rem;
+    line-height: 1.75;
+  }
+</style>

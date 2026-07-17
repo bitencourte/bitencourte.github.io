@@ -1,0 +1,174 @@
+---
+import { site, type Lang } from "../content/site";
+import { localePath, otherLang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const t = site[lang];
+const other = otherLang(lang);
+
+const navLinks = [
+  { label: t.nav.home, href: localePath(lang, "/") },
+  { label: t.nav.about, href: localePath(lang, "/sobre") },
+  { label: t.nav.projects, href: localePath(lang, "/projetos") },
+];
+
+const langHref = localePath(other, path);
+---
+
+<header class="site-header">
+  <div class="site-header__bar container">
+    <button
+      type="button"
+      class="menu-toggle"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <a href={localePath(lang, "/")} class="site-header__logo">GABRIEL</a>
+
+    <a href={langHref} class="lang-toggle" aria-label={`Switch to ${site[other].languageLabel}`}>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M3 12h18" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+      <span class="lang-toggle__code">{lang.toUpperCase()}</span>
+    </a>
+  </div>
+
+  <nav id="site-nav" class="site-nav" data-nav>
+    <ul>
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} aria-current={link.href === path ? "page" : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+  }
+
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+  }
+
+  .site-header__logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-orange);
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--color-ink);
+    transition: transform 0.25s ease, width 0.25s ease, opacity 0.25s ease;
+  }
+
+  .menu-toggle span:first-child {
+    width: 100%;
+  }
+
+  .menu-toggle span:last-child {
+    width: 60%;
+  }
+
+  body.nav-open .menu-toggle span:first-child {
+    transform: translateY(4px) rotate(45deg);
+    width: 100%;
+  }
+
+  body.nav-open .menu-toggle span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+    width: 100%;
+  }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-orange);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: var(--header-height) 0 0 0;
+    background: var(--color-bg);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 48px 24px;
+    max-width: var(--container-width);
+    margin-inline: auto;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  .site-nav a[aria-current="page"] {
+    color: var(--color-orange);
+  }
+
+  .site-nav a:hover {
+    color: var(--color-orange);
+  }
+</style>

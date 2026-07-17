@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { site, type Lang } from "../content/site";
+import { projects } from "../content/projects";
+import { localePath } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = site[lang];
+const projectList = projects[lang];
+---
+
+<BaseLayout lang={lang} path="/projetos" title={t.nav.projects}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{t.projetosPage.eyebrow}</p>
+      <h1 class="projetos__title" data-reveal>{t.projetosPage.subtitle}</h1>
+
+      <div class="projects-grid">
+        {
+          projectList.map((project) => (
+            <ProjectCard
+              name={project.name}
+              cover={project.cover}
+              href={localePath(lang, `/projetos/${project.slug}`)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding: 64px 0 96px;
+  }
+
+  .projetos__title {
+    margin-top: 12px;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: var(--color-orange);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  @media (min-width: 720px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
