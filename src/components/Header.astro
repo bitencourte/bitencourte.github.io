@@ -34,6 +34,7 @@ const langHref = localePath(other, path);
     >
       <span></span>
       <span></span>
+      <span></span>
     </button>
 
     <div class="site-header__nav">
@@ -41,7 +42,10 @@ const langHref = localePath(other, path);
         {
           navLinks.map((link) => (
             <li>
-              <a href={link.href} aria-current={link.href === path ? "page" : undefined}>
+              <a
+                href={link.href}
+                aria-current={link.href === path ? "page" : undefined}
+              >
                 {link.label}
               </a>
             </li>
@@ -54,7 +58,9 @@ const langHref = localePath(other, path);
           lang === "pt" ? (
             <span class="lang-toggle__option is-active">PT</span>
           ) : (
-            <a href={langHref} class="lang-toggle__option">PT</a>
+            <a href={langHref} class="lang-toggle__option">
+              PT
+            </a>
           )
         }
         <span class="lang-toggle__divider" aria-hidden="true"></span>
@@ -62,7 +68,9 @@ const langHref = localePath(other, path);
           lang === "en" ? (
             <span class="lang-toggle__option is-active">EN</span>
           ) : (
-            <a href={langHref} class="lang-toggle__option">EN</a>
+            <a href={langHref} class="lang-toggle__option">
+              EN
+            </a>
           )
         }
       </div>
@@ -74,7 +82,10 @@ const langHref = localePath(other, path);
       {
         navLinks.map((link, i) => (
           <li style={`--i:${i}`}>
-            <a href={link.href} aria-current={link.href === path ? "page" : undefined}>
+            <a
+              href={link.href}
+              aria-current={link.href === path ? "page" : undefined}
+            >
               {link.label}
             </a>
           </li>
@@ -82,12 +93,19 @@ const langHref = localePath(other, path);
       }
     </ul>
 
-    <div class="lang-toggle lang-toggle--mobile" style={`--i:${navLinks.length}`} role="group" aria-label="Language">
+    <div
+      class="lang-toggle lang-toggle--mobile"
+      style={`--i:${navLinks.length}`}
+      role="group"
+      aria-label="Language"
+    >
       {
         lang === "pt" ? (
           <span class="lang-toggle__option is-active">PT</span>
         ) : (
-          <a href={langHref} class="lang-toggle__option">PT</a>
+          <a href={langHref} class="lang-toggle__option">
+            PT
+          </a>
         )
       }
       <span class="lang-toggle__divider" aria-hidden="true"></span>
@@ -95,14 +113,12 @@ const langHref = localePath(other, path);
         lang === "en" ? (
           <span class="lang-toggle__option is-active">EN</span>
         ) : (
-          <a href={langHref} class="lang-toggle__option">EN</a>
+          <a href={langHref} class="lang-toggle__option">
+            EN
+          </a>
         )
       }
     </div>
-
-    <button type="button" class="site-nav__close" data-nav-close aria-label="Fechar menu">
-      &#215;
-    </button>
   </nav>
 </header>
 
@@ -118,18 +134,16 @@ const langHref = localePath(other, path);
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding-block: 24px;
+    padding-block: 20px;
     background: rgba(240, 240, 240, 0);
     border-bottom: 1px solid transparent;
     transition:
-      padding 0.35s ease,
       background 0.35s ease,
       backdrop-filter 0.35s ease,
       border-color 0.35s ease;
   }
 
   .site-header.is-scrolled .site-header__bar {
-    padding-block: 14px;
     background: rgba(240, 240, 240, 0.85);
     backdrop-filter: blur(10px);
     border-bottom-color: rgba(18, 18, 18, 0.08);
@@ -144,40 +158,37 @@ const langHref = localePath(other, path);
   }
 
   .menu-toggle {
+    position: relative;
+    z-index: 70;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
-    width: 32px;
-    height: 24px;
+    gap: 5px;
+    padding: 8px;
     background: none;
     border: none;
-    padding: 0;
   }
 
   .menu-toggle span {
     display: block;
+    width: 22px;
     height: 2px;
     background: var(--color-ink);
-    transition: transform 0.25s ease, width 0.25s ease, opacity 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
   }
 
-  .menu-toggle span:first-child {
-    width: 100%;
+  body.nav-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
   }
 
-  .menu-toggle span:last-child {
-    width: 60%;
+  body.nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
   }
 
-  body.nav-open .menu-toggle span:first-child {
-    transform: translateY(4px) rotate(45deg);
-    width: 100%;
-  }
-
-  body.nav-open .menu-toggle span:last-child {
-    transform: translateY(-4px) rotate(-45deg);
-    width: 100%;
+  body.nav-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .site-header__nav {
@@ -199,7 +210,9 @@ const langHref = localePath(other, path);
     font-weight: 600;
     border-bottom: 2px solid transparent;
     padding-bottom: 4px;
-    transition: color 0.25s ease, border-color 0.25s ease;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease;
   }
 
   .site-header__links a:hover,
@@ -263,18 +276,6 @@ const langHref = localePath(other, path);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-  }
-
-  .site-nav__close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    font-size: 1.75rem;
-    line-height: 1;
-    color: var(--color-ink);
-    padding: 4px;
   }
 
   .site-nav.is-open {

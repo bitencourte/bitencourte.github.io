@@ -7,22 +7,20 @@ import "../styles/global.css";
 interface Props {
   lang: Lang;
   path: string;
-  title?: string;
 }
 
-const { lang, path, title } = Astro.props;
+const { lang, path } = Astro.props;
 const t = site[lang];
-const pageTitle = title ? `${title} — ${t.meta.title}` : t.meta.title;
 ---
 
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="description" content={t.meta.description} />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{t.meta.title}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

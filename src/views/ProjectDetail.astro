@@ -17,7 +17,7 @@ const t = site[lang];
 const otherProjects = projects[lang].filter((p) => p.slug !== project.slug);
 ---
 
-<BaseLayout lang={lang} path={`/projetos/${project.slug}`} title={project.name}>
+<BaseLayout lang={lang} path={`/projetos/${project.slug}`}>
   <article class="section">
     <div class="container">
       <h1 class="project-detail__title" data-reveal>{project.name}</h1>
@@ -36,11 +36,17 @@ const otherProjects = projects[lang].filter((p) => p.slug !== project.slug);
       <div class="projects-grid">
         {
           otherProjects.map((p) => (
-            <ProjectCard name={p.name} cover={p.cover} href={localePath(lang, `/projetos/${p.slug}`)} />
+            <ProjectCard
+              name={p.name}
+              cover={p.cover}
+              href={localePath(lang, `/projetos/${p.slug}`)}
+            />
           ))
         }
       </div>
-      <a class="view-all" href={localePath(lang, "/projetos")} data-reveal>{t.projectDetail.viewAll}</a>
+      <a class="view-all" href={localePath(lang, "/projetos")} data-reveal
+        >{t.projectDetail.viewAll}</a
+      >
     </div>
   </section>
 </BaseLayout>
