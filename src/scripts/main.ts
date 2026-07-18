@@ -97,8 +97,6 @@ function initHero() {
   const photo = document.querySelector<HTMLElement>("[data-hero-photo]");
   if (!hero || !photo) return;
 
-  const subtitle = hero.querySelector<HTMLElement>(".hero__subtitle");
-  const cta = hero.querySelector<HTMLElement>(".hero__cta");
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -106,61 +104,34 @@ function initHero() {
     "(hover: hover) and (pointer: fine)",
   ).matches;
 
-  if (reduceMotion) return;
+  // Mouse-tilt only — no scroll-linked drift. The photo and the
+  // subtitle/CTA below it used to drift toward each other on scroll,
+  // which either overlapped on short mobile heroes or (once fixed with a
+  // fade) left a dead gap where the text used to be. Letting the hero
+  // scroll away as one static block avoids both.
+  if (reduceMotion || !canHover) return;
 
-  // The entrance animation holds its end transform via fill-mode until it
-  // actually ends — releasing it here lets inline transforms take over.
   let entranceDone = false;
   photo.addEventListener("animationend", () => {
     photo.style.animation = "none";
     entranceDone = true;
-    applyPhotoTransform();
   });
 
-  let mouseTx = 0;
-  let mouseTy = 0;
-  let mouseRotate = 0;
+  hero.addEventListener("mousemove", (event) => {
+    if (!entranceDone) return;
+    const rect = hero.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+    const tx = x * 16;
+    const ty = y * 12;
+    const rotate = x * 6;
+    photo.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rotate}deg)`;
+  });
 
-  function applyPhotoTransform() {
-    if (!entranceDone || !photo) return;
-    const scrollTy = Math.min(window.scrollY * 0.12, 60);
-    photo.style.transform = `translate(calc(-50% + ${mouseTx}px), calc(-50% + ${mouseTy + scrollTy}px)) rotate(${mouseRotate}deg)`;
-  }
-
-  if (canHover) {
-    hero.addEventListener("mousemove", (event) => {
-      const rect = hero.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-      mouseTx = x * 16;
-      mouseTy = y * 12;
-      mouseRotate = x * 6;
-      applyPhotoTransform();
-    });
-
-    hero.addEventListener("mouseleave", () => {
-      mouseTx = 0;
-      mouseTy = 0;
-      mouseRotate = 0;
-      applyPhotoTransform();
-    });
-  }
-
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      applyPhotoTransform();
-      const textOffset = Math.max(-window.scrollY * 0.15, -40);
-      const textTransform = `translateY(${textOffset}px)`;
-      if (subtitle) subtitle.style.transform = textTransform;
-      if (cta) cta.style.transform = textTransform;
-      ticking = false;
-    });
-  };
-
-  window.addEventListener("scroll", onScroll, { passive: true });
+  hero.addEventListener("mouseleave", () => {
+    if (!entranceDone) return;
+    photo.style.transform = "translate(-50%, -50%) rotate(0deg)";
+  });
 }
 
 function initReveal() {
