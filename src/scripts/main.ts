@@ -9,12 +9,52 @@ function initMenu() {
     document.body.classList.toggle("nav-open", isOpen);
   });
 
+  const closeNav = () => {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+  };
+
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("nav-open");
-    });
+    link.addEventListener("click", closeNav);
+  });
+
+  document.querySelector<HTMLButtonElement>("[data-nav-close]")?.addEventListener("click", closeNav);
+}
+
+function initHeaderScroll() {
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (!header) return;
+
+  const onScroll = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+function initHeroParallax() {
+  const hero = document.querySelector<HTMLElement>("[data-hero]");
+  const photo = document.querySelector<HTMLElement>("[data-hero-photo]");
+  if (!hero || !photo) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (reduceMotion || !canHover) return;
+
+  hero.addEventListener("mousemove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+    const tx = x * 16;
+    const ty = y * 12;
+    const rotate = x * 6;
+    photo.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rotate}deg)`;
+  });
+
+  hero.addEventListener("mouseleave", () => {
+    photo.style.transform = "translate(-50%, -50%) rotate(0deg)";
   });
 }
 
@@ -43,4 +83,6 @@ function initReveal() {
 }
 
 initMenu();
+initHeaderScroll();
+initHeroParallax();
 initReveal();

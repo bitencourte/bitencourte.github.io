@@ -7,9 +7,10 @@
 
   --font-display: "Big Shoulders Display", sans-serif;
   --font-body: "DM Sans", sans-serif;
+  --font-hero: "Anton", sans-serif;
+  --font-accent: "Space Grotesk", sans-serif;
 
   --container-width: 1120px;
-  --header-height: 90px;
 }
 
 *,
