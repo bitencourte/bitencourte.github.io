@@ -12,14 +12,17 @@ const { blocks } = Astro.props;
   {
     blocks.map((block) => {
       if (block.type === "paragraph") {
-        return (
-          <p data-reveal>{block.text}</p>
-        );
+        return <p data-reveal>{block.text}</p>;
       }
       if (block.type === "link") {
         return (
           <p data-reveal>
-            <a href={block.href} target="_blank" rel="noreferrer" class="project-blocks__link">
+            <a
+              href={block.href}
+              target="_blank"
+              rel="noreferrer"
+              class="project-blocks__link"
+            >
               {block.text}
             </a>
           </p>

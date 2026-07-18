@@ -30,7 +30,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "design-system",
       name: "Design System",
       cover: "/images/shared/shape-1.png",
-      meta: { area: "Design System", client: "-", role: "Product Designer", date: "2023-2025" },
+      meta: {
+        area: "Design System",
+        client: "-",
+        role: "Product Designer",
+        date: "2023-2025",
+      },
       summary:
         "Criação, implementação e manutenção de um Design System, consolidando-o entre designers de produto e desenvolvedores.",
       blocks: [
@@ -46,7 +51,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/design-system/01.png",
           alt: "Componente de inputs do Design System",
-          caption: "Componente de inputs, otimizado através do Figma com a utilização de variáveis e slots.",
+          caption:
+            "Componente de inputs, otimizado através do Figma com a utilização de variáveis e slots.",
         },
         {
           type: "paragraph",
@@ -60,13 +66,15 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/design-system/02.gif",
           alt: "Uso de variáveis e tokens no Design System",
-          caption: "Utilização de variáveis e alteração de tokens para funcionamento white label.",
+          caption:
+            "Utilização de variáveis e alteração de tokens para funcionamento white label.",
         },
         {
           type: "image",
           src: "/images/projetos/design-system/03.png",
           alt: "Componentes de alta-fidelidade do Design System",
-          caption: "Componentes pronto para protótipos de alta-fidelidade, com animações e alterações de estados.",
+          caption:
+            "Componentes pronto para protótipos de alta-fidelidade, com animações e alterações de estados.",
         },
       ],
     },
@@ -74,7 +82,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "timeline-rastreio",
       name: "Timeline de Rastreio",
       cover: "/images/shared/shape-2.png",
-      meta: { area: "Logística", client: "Melhor Rastreio", role: "Product Designer", date: "2023" },
+      meta: {
+        area: "Logística",
+        client: "Melhor Rastreio",
+        role: "Product Designer",
+        date: "2023",
+      },
       summary:
         "O Melhor Rastreio é uma plataforma para rastreamento de encomendas que ajuda remetentes e destinatários. É um subproduto do Melhor Envio, empresa do grupo LWSA. Neste projeto, foi desenvolvida uma nova timeline que indicasse o status atual do pacote que está sendo acompanhada de forma a facilitar a identificação e localização dos objetos.",
       blocks: [
@@ -123,7 +136,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "eager",
       name: "Eager",
       cover: "/images/shared/shape-3.png",
-      meta: { area: "Saúde", client: "Projeto fictício", role: "Product Designer", date: "2023" },
+      meta: {
+        area: "Saúde",
+        client: "Projeto fictício",
+        role: "Product Designer",
+        date: "2023",
+      },
       summary:
         "Aplicativo desenvolvido para a disciplina de Design de Interfaces Digitais. Para o projeto, foi utilizada a metodologia que Jesse James Garrett relata em “Os elementos da experiência do usuário”. O trabalho contou com definição de escopo, estratégia, questionários com potenciais usuários, criação de wireframes e direção de arte das interfaces.",
       blocks: [
@@ -133,7 +151,7 @@ export const projects: Record<Lang, Project[]> = {
         },
         {
           type: "paragraph",
-          text: "Para o projeto, foi utilizada a metodologia de Jesse James Garrett, apresentada no livro \"Os elementos da experiência do usuário\", que divide a criação de um produto digital em 5 etapas, conforme mostrado a seguir.",
+          text: 'Para o projeto, foi utilizada a metodologia de Jesse James Garrett, apresentada no livro "Os elementos da experiência do usuário", que divide a criação de um produto digital em 5 etapas, conforme mostrado a seguir.',
         },
         {
           type: "image",
@@ -149,7 +167,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/eager/02.png",
           alt: "Dados levantados na pesquisa do Eager",
-          caption: "Principais dados levantados após aplicação de pesquisas quantitativas.",
+          caption:
+            "Principais dados levantados após aplicação de pesquisas quantitativas.",
         },
         {
           type: "paragraph",
@@ -173,7 +192,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/eager/04.png",
           alt: "Interface final do Eager",
-          caption: "Etapa de plano de superfície, com o resultado final da interface proposta.",
+          caption:
+            "Etapa de plano de superfície, com o resultado final da interface proposta.",
         },
         {
           type: "link",
@@ -188,7 +208,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "design-system",
       name: "Design System",
       cover: "/images/shared/shape-1.png",
-      meta: { area: "Design System", client: "-", role: "Product Designer", date: "2023-2025" },
+      meta: {
+        area: "Design System",
+        client: "-",
+        role: "Product Designer",
+        date: "2023-2025",
+      },
       summary:
         "Creation, implementation, and maintenance of a Design System, consolidating it among product designers and developers.",
       blocks: [
@@ -204,7 +229,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/design-system/01.png",
           alt: "Design System input component",
-          caption: "Input component, optimized through Figma using variables and slots.",
+          caption:
+            "Input component, optimized through Figma using variables and slots.",
         },
         {
           type: "paragraph",
@@ -218,13 +244,15 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/design-system/02.gif",
           alt: "Use of variables and tokens in the Design System",
-          caption: "Use of variables and modification of tokens for white-label operation.",
+          caption:
+            "Use of variables and modification of tokens for white-label operation.",
         },
         {
           type: "image",
           src: "/images/projetos/design-system/03.png",
           alt: "High-fidelity Design System components",
-          caption: "Components ready for high-fidelity prototypes, with animations and state changes.",
+          caption:
+            "Components ready for high-fidelity prototypes, with animations and state changes.",
         },
       ],
     },
@@ -232,7 +260,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "timeline-rastreio",
       name: "Tracking Timeline",
       cover: "/images/shared/shape-2.png",
-      meta: { area: "Logistics", client: "Melhor Rastreio", role: "Product Designer", date: "2023" },
+      meta: {
+        area: "Logistics",
+        client: "Melhor Rastreio",
+        role: "Product Designer",
+        date: "2023",
+      },
       summary:
         "Melhor Rastreio is a platform for tracking shipments that helps senders and recipients. It is a byproduct of Melhor Envio, a company of the LWSA group. In this project, a new timeline was developed to indicate the current status of the package being tracked to facilitate the identification and location of the objects.",
       blocks: [
@@ -281,7 +314,12 @@ export const projects: Record<Lang, Project[]> = {
       slug: "eager",
       name: "Eager",
       cover: "/images/shared/shape-3.png",
-      meta: { area: "Health", client: "Fictional project", role: "Product Designer", date: "2023" },
+      meta: {
+        area: "Health",
+        client: "Fictional project",
+        role: "Product Designer",
+        date: "2023",
+      },
       summary:
         "Application developed for the Digital Interface Design course. For the project, the methodology described by Jesse James Garrett in “The Elements of User Experience” was used. The work included scope definition, strategy, questionnaires with potential users, creation of wireframes, and art direction of the interfaces.",
       blocks: [
@@ -291,7 +329,7 @@ export const projects: Record<Lang, Project[]> = {
         },
         {
           type: "paragraph",
-          text: "For the project, the methodology of Jesse James Garrett was used, presented in the book \"The Elements of User Experience,\" which divides the creation of a digital product into 5 stages, as shown below.",
+          text: 'For the project, the methodology of Jesse James Garrett was used, presented in the book "The Elements of User Experience," which divides the creation of a digital product into 5 stages, as shown below.',
         },
         {
           type: "image",
@@ -307,7 +345,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/eager/02.png",
           alt: "Data collected in the Eager research",
-          caption: "Main data collected after the application of quantitative research.",
+          caption:
+            "Main data collected after the application of quantitative research.",
         },
         {
           type: "paragraph",
@@ -331,7 +370,8 @@ export const projects: Record<Lang, Project[]> = {
           type: "image",
           src: "/images/projetos/eager/04.png",
           alt: "Final interface of Eager",
-          caption: "Surface plan stage, with the final result of the proposed interface.",
+          caption:
+            "Surface plan stage, with the final result of the proposed interface.",
         },
         {
           type: "link",

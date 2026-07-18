@@ -15,7 +15,7 @@ const t = site[lang];
 const projectList = projects[lang];
 ---
 
-<BaseLayout lang={lang} path="/" title={t.nav.home}>
+<BaseLayout lang={lang} path="/">
   <section id="hero" class="hero" data-hero>
     <div class="container hero__inner">
       <div class="hero__stage">
@@ -35,7 +35,8 @@ const projectList = projects[lang];
       <p class="hero__subtitle">{t.hero.subtitle}</p>
 
       <a href="#sobre" class="hero__cta">
-        {t.hero.cta} <span aria-hidden="true">&#8595;</span>
+        {t.hero.cta}
+        <span aria-hidden="true">&#8595;</span>
       </a>
     </div>
   </section>
@@ -72,7 +73,11 @@ const projectList = projects[lang];
       <div class="timeline">
         {
           t.experience.items.map((item) => (
-            <TimelineItem heading={item.company} period={item.period} subtitle={item.role} />
+            <TimelineItem
+              heading={item.company}
+              period={item.period}
+              subtitle={item.role}
+            />
           ))
         }
       </div>
@@ -85,7 +90,11 @@ const projectList = projects[lang];
       <div class="timeline">
         {
           t.education.items.map((item) => (
-            <TimelineItem heading={item.degree} period={item.period} subtitle={item.institution} />
+            <TimelineItem
+              heading={item.degree}
+              period={item.period}
+              subtitle={item.institution}
+            />
           ))
         }
       </div>
@@ -229,6 +238,7 @@ const projectList = projects[lang];
 
   .section {
     padding: 64px 0;
+    scroll-margin-top: 100px;
   }
 
   .about__paragraphs {
